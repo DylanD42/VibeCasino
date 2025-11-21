@@ -50,3 +50,36 @@ Notes
 - This is a small demo and not a production-ready online casino.
 - You can extend it by adding networking, more games, persistence, and
 	better UI/graphics.
+Using the bundled raylib submodule (Windows / offline builds)
+-----------------------------------------------------------
+
+This project can optionally build a bundled copy of raylib from a git
+submodule. This is useful on Windows where a system package may not be
+available. The repository includes a `.gitmodules` entry; to fetch the
+submodule run:
+
+```bash
+git submodule update --init --recursive
+```
+
+Or add the submodule yourself if it's not present:
+
+```bash
+git submodule add https://github.com/raysan5/raylib.git external/raylib
+git submodule update --init --recursive
+```
+
+After the submodule is present you can build with CMake as usual. On
+Windows you may want to select the appropriate generator (Visual Studio
+or MinGW):
+
+```powershell
+# Example for MSYS2/MinGW
+mkdir build && cd build
+cmake -G "MSYS Makefiles" ..
+make
+```
+
+If neither pkg-config nor the submodule are available CMake will stop
+and show instructions to add the submodule or install raylib on your
+system.
